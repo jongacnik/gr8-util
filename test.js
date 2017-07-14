@@ -43,7 +43,8 @@ var simple = {
     ['margin-left', 'margin-right']
   ],
   vals: [1, 2, 3],
-  unit: 'rem'
+  unit: 'rem',
+  tail: ':after'
 }
 
 var columns = {
@@ -82,4 +83,4 @@ var aspectRatio = [50, 100].map(v => ruleset(`ar${v}:after`, `content:"";display
 
 var plain = ruleset('dev', 'outline:1px solid red')
 
-console.log(aspectRatio)
+console.log(util(simple))

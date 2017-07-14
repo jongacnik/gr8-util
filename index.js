@@ -6,7 +6,10 @@ var ruleset = require('./ruleset')
 /**
  * Todo
  *
- * - [ ] After option
+ * - [ ] Tests
+ * - [ ] Determine if keep transform
+ * - [ ] Determine if tail correct name
+ * - [ ] Determine if classes only
  */
 
 module.exports = gr8util
@@ -18,7 +21,8 @@ function gr8util (opts) {
     suffixes: getSuffixes(opts.vals),
     values: getValues(opts.vals, opts.transform),
     join: opts.join,
-    unit: opts.unit
+    unit: opts.unit,
+    tail: opts.tail
   })
 }
 
@@ -48,7 +52,7 @@ function getRulesets (opts) {
   var rulesets = opts.prefixes.map(function (prefix, i) {
     return opts.values.map(function (value, j) {
       return ruleset(
-        classname(prefix, opts.suffixes[j], opts.join),
+        classname(prefix, opts.suffixes[j], opts.join, opts.tail),
         declarations(opts.properties[i], value, opts.unit)
       )
     })
@@ -81,8 +85,8 @@ function declarations (properties, value, unit) {
   return ensureArray(properties).map(property => declaration(property, value, unit)).join(';')
 }
 
-function classname (prefix, suffix, join) {
-  return `${prefix}${join || ''}${suffix}`
+function classname (prefix, suffix, join, append) {
+  return `${prefix}${join || ''}${suffix}${append || ''}`
 }
 
 function declaration (property, value, unit) {
