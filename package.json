@@ -4,17 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "arr-flatten": "^1.1.0",
+    "gr8-rule": "github:jongacnik/gr8-rule",
     "is-plain-obj": "^1.1.0",
     "object-values": "^1.0.0"
   },
   "devDependencies": {
-    "object-from-entries": "^1.0.0"
+    "tape": "^4.7.0"
   }
 }

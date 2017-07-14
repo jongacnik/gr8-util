@@ -1,7 +1,7 @@
 var objectValues = require('object-values')
 var isPlainObj = require('is-plain-obj')
 var flatten = require('arr-flatten')
-var ruleset = require('./ruleset')
+var ruleset = require('gr8-rule')
 
 /**
  * Todo
@@ -40,7 +40,8 @@ function getProperties (input) {
 
 function getSuffixes (input) {
   var suffixes = isPlainObj(input) ? Object.keys(input) : ensureArray(input)
-  return suffixes.map(i => dedecimalOrAbbreviate(i))
+  var shouldAbbreviate = !isPlainObj(input)
+  return suffixes.map(i => dedecimalOrAbbreviate(i, shouldAbbreviate))
 }
 
 function getValues (input, transform = i => i) {
@@ -69,8 +70,10 @@ function abbreviate (input) {
   return String(input).split('-').map(word => word[0]).join('')
 }
 
-function dedecimalOrAbbreviate (input) {
-  return isFinite(String(input)) ? dedecimal(input) : abbreviate(input)
+function dedecimalOrAbbreviate (input, shouldAbbreviate) {
+  return isFinite(String(input)) 
+    ? dedecimal(input)
+    : (shouldAbbreviate ? abbreviate(input) : input)
 }
 
 function ensureArray (input) {
@@ -82,7 +85,8 @@ function abbreviations (input) {
 }
 
 function declarations (properties, value, unit) {
-  return ensureArray(properties).map(property => declaration(property, value, unit)).join(';')
+  return ensureArray(properties)
+    .map(property => declaration(property, value, unit)).join(';')
 }
 
 function classname (prefix, suffix, join, append) {
