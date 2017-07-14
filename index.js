@@ -171,8 +171,8 @@ function declarations (properties, value, unit) {
   return properties.map(property => declaration(property, value, unit)).join(';')
 }
 
-function classname (prefix, suffix, joinwith = '') {
-  return `${prefix}${joinwith}${suffix}`
+function classname (prefix, suffix, join) {
+  return `${prefix}${join || ''}${suffix}`
 }
 
 function declaration (property, value, unit) {
