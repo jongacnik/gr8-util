@@ -1,6 +1,6 @@
-var flatten = require('arr-flatten')
-var assert = require('assert')
 var objectValues = require('object-values')
+var isPlainObj = require('is-plain-obj')
+var flatten = require('arr-flatten')
 
 /**
  * Todo
@@ -9,59 +9,9 @@ var objectValues = require('object-values')
  * - [ ] After option
  */
 
-module.exports = util
+module.exports = gr8util
 
-var basic = {
-  prop: 'display',
-  vals: [
-    'flex',
-    'block',
-    'inline-block',
-    'inline',
-    'table',
-    'table-cell',
-    'table-row',
-    'none'
-  ]
-}
-
-var simple = {
-  prop: [
-    'margin',
-    'margin-top',
-    'margin-right',
-    'margin-bottom',
-    'margin-left',
-    ['margin-left', 'margin-right']
-  ],
-  vals: [
-    0,
-    1,
-    2
-  ],
-  unit: 'rem'
-}
-
-var medium = {
-  prop: {
-    mgn: 'margin',
-    mgnt: 'margin-top',
-    mgnr: 'margin-right',
-    mgnb: 'margin-bottom',
-    mgnl: 'margin-left',
-    mx: ['margin-left', 'margin-right']
-  },
-  vals: {
-    n: 0,
-    s: 1,
-    b: 2
-  },
-  transform: i => i * 2,
-  unit: 'rem',
-  join: '-'
-}
-
-function util (opts) {
+function gr8util (opts) {
   return getRulesets({
     prefixes: getPrefixes(opts.prop),
     properties: getProperties(opts.prop),
@@ -73,66 +23,24 @@ function util (opts) {
 }
 
 function getPrefixes (input) {
-  var prefixes
-
-  if (typeof input === 'string') {
-    prefixes = [ abbreviate(input) ]
-  } else if (Array.isArray(input)) {
-    prefixes = input.map(i => abbreviations(i))
-  } else if (typeof input === 'object') {
-    prefixes = Object.keys(input)
-  }
-
-  assert.ok(prefixes, 'gr8-util: opts.props should be a string, array, or object')
-
+  var prefixes = isPlainObj(input) 
+    ? Object.keys(input) 
+    : ensureArray(input).map(i => abbreviations(i))
   return prefixes
 }
 
 function getProperties (input) {
-  var properties
-
-  if (typeof input === 'string') {
-    properties = [ input ]
-  } else if (Array.isArray(input)) {
-    properties = input
-  } else if (typeof input === 'object') {
-    properties = objectValues(input)
-  }
-
-  assert.ok(properties, 'gr8-util: opts.props should be a string, array, or object')
-
+  var properties = isPlainObj(input) ? objectValues(input) : ensureArray(input)
   return properties
 }
 
 function getSuffixes (input) {
-  var suffixes
-
-  if (typeof input === 'string' || isFinite(String(input))) {
-    suffixes = [ input ]
-  } else if (Array.isArray(input)) {
-    suffixes = input
-  } else if (typeof input === 'object') {
-    suffixes = Object.keys(input)
-  }
-
-  assert.ok(suffixes, 'gr8-util: opts.vals should be a string, number, array, or object')
-
+  var suffixes = isPlainObj(input) ? Object.keys(input) : ensureArray(input)
   return suffixes.map(i => dedecimalOrAbbreviate(i))
 }
 
 function getValues (input, transform = i => i) {
-  var values
-
-  if (typeof input === 'string' || isFinite(String(input))) {
-    values = [ input ]
-  } else if (Array.isArray(input)) {
-    values = input
-  } else if (typeof input === 'object') {
-    values = objectValues(input)
-  }
-
-  assert.ok(values, 'gr8-util: opts.vals should be a string, number, array, or object')
-
+  var values = isPlainObj(input) ? objectValues(input) : ensureArray(input)
   return values.map(i => transform(i))
 }
 
@@ -161,14 +69,16 @@ function dedecimalOrAbbreviate (input) {
   return isFinite(String(input)) ? dedecimal(input) : abbreviate(input)
 }
 
+function ensureArray (input) {
+  return Array.isArray(input) ? input : [ input ]
+}
+
 function abbreviations (input) {
-  input = Array.isArray(input) ? input : [ input ]
-  return input.map(i => abbreviate(i)).join('')
+  return ensureArray(input).map(i => abbreviate(i)).join('')
 }
 
 function declarations (properties, value, unit) {
-  properties = Array.isArray(properties) ? properties : [ properties ]
-  return properties.map(property => declaration(property, value, unit)).join(';')
+  return ensureArray(properties).map(property => declaration(property, value, unit)).join(';')
 }
 
 function classname (prefix, suffix, join) {
@@ -182,5 +92,3 @@ function declaration (property, value, unit) {
 function ruleset (classname, declaration) {
   return `.${classname}{${declaration}}`
 }
-
-console.log(util(basic))
