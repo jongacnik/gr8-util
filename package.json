@@ -13,5 +13,8 @@
     "arr-flatten": "^1.1.0",
     "is-plain-obj": "^1.1.0",
     "object-values": "^1.0.0"
+  },
+  "devDependencies": {
+    "object-from-entries": "^1.0.0"
   }
 }

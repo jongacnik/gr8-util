@@ -1,4 +1,5 @@
 var util = require('./')
+var ofe = require('object-from-entries')
 
 var basic = {
   prop: 'display',
@@ -31,6 +32,32 @@ var simple = {
   unit: 'rem'
 }
 
+var simple = {
+  prop: [
+    'margin',
+    'margin-top',
+    'margin-right',
+    'margin-bottom',
+    'margin-left',
+    ['margin-left', 'margin-right']
+  ],
+  vals: [1, 2, 3],
+  unit: 'rem'
+}
+
+var columns = {
+  prop: { c: 'width' },
+  vals: ofe([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(v => [v, v / 12 * 100])),
+  unit: '%'
+}
+
+// var columns = {
+//   prop: { c: 'width' },
+//   vals: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+//   transform: i => i / 12 * 100,
+//   unit: '%'
+// }
+
 var medium = {
   prop: {
     mgn: 'margin',
@@ -50,4 +77,4 @@ var medium = {
   join: '-'
 }
 
-console.log(util(simple))
+console.log(util(columns))
