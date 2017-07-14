@@ -11,6 +11,20 @@ var objectValues = require('object-values')
 
 module.exports = util
 
+var basic = {
+  prop: 'display',
+  vals: [
+    'flex',
+    'block',
+    'inline-block',
+    'inline',
+    'table',
+    'table-cell',
+    'table-row',
+    'none'
+  ]
+}
+
 var simple = {
   prop: [
     'margin',
@@ -103,7 +117,7 @@ function getSuffixes (input) {
 
   assert.ok(suffixes, 'gr8-util: opts.vals should be a string, number, array, or object')
 
-  return suffixes.map(i => dedecimal(i))
+  return suffixes.map(i => dedecimalOrAbbreviate(i))
 }
 
 function getValues (input, transform = i => i) {
@@ -143,6 +157,10 @@ function abbreviate (input) {
   return String(input).split('-').map(word => word[0]).join('')
 }
 
+function dedecimalOrAbbreviate (input) {
+  return isFinite(String(input)) ? dedecimal(input) : abbreviate(input)
+}
+
 function abbreviations (input) {
   input = Array.isArray(input) ? input : [ input ]
   return input.map(i => abbreviate(i)).join('')
@@ -165,5 +183,4 @@ function ruleset (classname, declaration) {
   return `.${classname}{${declaration}}`
 }
 
-console.log(util(simple))
-console.log(util(medium))
+console.log(util(basic))
