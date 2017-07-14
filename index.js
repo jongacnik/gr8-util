@@ -1,11 +1,11 @@
 var objectValues = require('object-values')
 var isPlainObj = require('is-plain-obj')
 var flatten = require('arr-flatten')
+var ruleset = require('./ruleset')
 
 /**
  * Todo
  *
- * - [ ] Simple declaration
  * - [ ] After option
  */
 
@@ -87,8 +87,4 @@ function classname (prefix, suffix, join) {
 
 function declaration (property, value, unit) {
   return `${property}:${value}${value && unit || ''}`
-}
-
-function ruleset (classname, declaration) {
-  return `.${classname}{${declaration}}`
 }

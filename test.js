@@ -1,4 +1,5 @@
 var util = require('./')
+var ruleset = require('./ruleset')
 var ofe = require('object-from-entries')
 
 var basic = {
@@ -77,4 +78,8 @@ var medium = {
   join: '-'
 }
 
-console.log(util(columns))
+var aspectRatio = [50, 100].map(v => ruleset(`ar${v}:after`, `content:"";display:block;padding-top:${v}${v && '%' || ''}`))
+
+var plain = ruleset('dev', 'outline:1px solid red')
+
+console.log(aspectRatio)
