@@ -5,7 +5,6 @@ var objectValues = require('object-values')
 /**
  * Todo
  *
- * - [ ] Multiple props: ['margin-left', 'margin-right']
  * - [ ] Simple declaration
  * - [ ] After option
  */
@@ -18,7 +17,8 @@ var simple = {
     'margin-top',
     'margin-right',
     'margin-bottom',
-    'margin-left'
+    'margin-left',
+    ['margin-left', 'margin-right']
   ],
   vals: [
     0,
@@ -34,7 +34,8 @@ var medium = {
     mgnt: 'margin-top',
     mgnr: 'margin-right',
     mgnb: 'margin-bottom',
-    mgnl: 'margin-left'
+    mgnl: 'margin-left',
+    mx: ['margin-left', 'margin-right']
   },
   vals: {
     n: 0,
@@ -63,7 +64,7 @@ function getPrefixes (input) {
   if (typeof input === 'string') {
     prefixes = [ abbreviate(input) ]
   } else if (Array.isArray(input)) {
-    prefixes = input.map(i => abbreviate(i))
+    prefixes = input.map(i => abbreviations(i))
   } else if (typeof input === 'object') {
     prefixes = Object.keys(input)
   }
@@ -126,7 +127,7 @@ function getRulesets (opts) {
     return opts.values.map(function (value, j) {
       return ruleset(
         classname(prefix, opts.suffixes[j], opts.join),
-        declaration(opts.properties[i], value, opts.unit)
+        declarations(opts.properties[i], value, opts.unit)
       )
     })
   })
@@ -142,6 +143,16 @@ function abbreviate (input) {
   return String(input).split('-').map(word => word[0]).join('')
 }
 
+function abbreviations (input) {
+  input = Array.isArray(input) ? input : [ input ]
+  return input.map(i => abbreviate(i)).join('')
+}
+
+function declarations (properties, value, unit) {
+  properties = Array.isArray(properties) ? properties : [ properties ]
+  return properties.map(property => declaration(property, value, unit)).join(';')
+}
+
 function classname (prefix, suffix, joinwith = '') {
   return `${prefix}${joinwith}${suffix}`
 }
@@ -155,3 +166,4 @@ function ruleset (classname, declaration) {
 }
 
 console.log(util(simple))
+console.log(util(medium))
