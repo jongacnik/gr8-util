@@ -1,15 +1,13 @@
 var objectValues = require('object-values')
 var isPlainObj = require('is-plain-obj')
 var flatten = require('arr-flatten')
-var ruleset = require('gr8-rule')
 
 /**
  * Todo
  *
  * - [ ] Tests
+ * - [ ] Assertions
  * - [ ] Determine if keep transform
- * - [ ] Determine if tail correct name
- * - [ ] Determine if classes only
  */
 
 module.exports = gr8util
@@ -22,7 +20,8 @@ function gr8util (opts) {
     values: getValues(opts.vals, opts.transform),
     join: opts.join,
     unit: opts.unit,
-    tail: opts.tail
+    tail: opts.tail,
+    selector: opts.selector || (s => `.${s}`)
   })
 }
 
@@ -53,8 +52,9 @@ function getRulesets (opts) {
   var rulesets = opts.prefixes.map(function (prefix, i) {
     return opts.values.map(function (value, j) {
       return ruleset(
-        classname(prefix, opts.suffixes[j], opts.join, opts.tail),
-        declarations(opts.properties[i], value, opts.unit)
+        opts.selector(classname(prefix, opts.suffixes[j], opts.join)),
+        declarations(opts.properties[i], value, opts.unit),
+        opts.tail
       )
     })
   })
@@ -89,8 +89,12 @@ function declarations (properties, value, unit) {
     .map(property => declaration(property, value, unit)).join(';')
 }
 
-function classname (prefix, suffix, join, append) {
-  return `${prefix}${join || ''}${suffix}${append || ''}`
+function ruleset (selector, declaration, tail) {
+  return `${selector}${tail || ''}{${declaration}}`
+}
+
+function classname (prefix, suffix, join) {
+  return `${prefix}${join || ''}${suffix}`
 }
 
 function declaration (property, value, unit) {

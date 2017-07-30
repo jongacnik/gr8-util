@@ -11,7 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "arr-flatten": "^1.1.0",
-    "gr8-rule": "github:jongacnik/gr8-rule",
     "is-plain-obj": "^1.1.0",
     "object-values": "^1.0.0"
   },

@@ -4,7 +4,6 @@ var util = require('./')
 /**
  * Todo
  *
- * - [ ] Test tail
  * - [ ] Test transform?
  */
 
@@ -71,6 +70,32 @@ test('prop {Object}, vals {Object}, join {String}', function (t) {
   })
 
   var hasUtil = has('.bgc-red{background-color:#f00}', css)
+
+  t.ok(hasUtil, css)
+  t.end()
+})
+
+test('prop {String}, vals {String}, selector {Function}', function (t) {
+  var css = util({
+    prop: 'display',
+    vals: 'block',
+    selector: s => `[data-md~="${s}"]`
+  })
+
+  var hasUtil = has('[data-md~="db"]{display:block}', css)
+
+  t.ok(hasUtil, css)
+  t.end()
+})
+
+test('prop {String}, vals {String}, tail {String}', function (t) {
+  var css = util({
+    prop: 'display',
+    vals: 'block',
+    tail: ':after'
+  })
+
+  var hasUtil = has('.db:after{display:block}', css)
 
   t.ok(hasUtil, css)
   t.end()
