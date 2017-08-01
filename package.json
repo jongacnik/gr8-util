@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "arr-flatten": "^1.1.0",
+    "is-number": "^3.0.0",
     "is-plain-obj": "^1.1.0",
     "object-values": "^1.0.0"
   },

@@ -1,5 +1,6 @@
 var objectValues = require('object-values')
 var isPlainObj = require('is-plain-obj')
+var isNumber = require('is-number')
 var flatten = require('arr-flatten')
 
 /**
@@ -108,5 +109,5 @@ function classname (prefix, suffix, join) {
 }
 
 function declaration (property, value, unit) {
-  return `${property}:${value}${value && unit || ''}`
+  return `${property}:${value}${value && isNumber(value) && unit || ''}`
 }
