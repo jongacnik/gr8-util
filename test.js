@@ -75,6 +75,23 @@ test('prop {Object}, vals {Object}, join {String}', function (t) {
   t.end()
 })
 
+test('prop {Array}{Obj}, vals {Int}, unit {String}', function (t) {
+  var css = util({
+    prop: [
+      { 
+        mx: ['margin-left', 'margin-right']
+      }
+    ],
+    vals: 1,
+    unit: 'rem'
+  })
+
+  var hasUtil = has('.mx1{margin-left:1rem;margin-right:1rem}', css)
+
+  t.ok(hasUtil, css)
+  t.end()
+})
+
 test('prop {String}, vals {String}, selector {Function}', function (t) {
   var css = util({
     prop: 'display',

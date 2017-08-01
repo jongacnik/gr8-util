@@ -28,12 +28,22 @@ function gr8util (opts) {
 function getPrefixes (input) {
   var prefixes = isPlainObj(input) 
     ? Object.keys(input) 
-    : ensureArray(input).map(i => abbreviations(i))
+    : ensureArray(input).map(i => {
+      return isPlainObj(i)
+        ? Object.keys(i).pop()
+        : abbreviations(i)
+    })
   return prefixes
 }
 
 function getProperties (input) {
-  var properties = isPlainObj(input) ? objectValues(input) : ensureArray(input)
+  var properties = isPlainObj(input)
+    ? objectValues(input)
+    : ensureArray(input).map(i => {
+      return isPlainObj(i)
+        ? objectValues(i).pop()
+        : i
+    })
   return properties
 }
 
