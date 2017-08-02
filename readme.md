@@ -239,7 +239,7 @@ var css = util({
 
 ---
 
-Pass a function to `selector` in order to create selectors other than class selectors. Function receives *selectorname* as input and should return a [css selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) as a string.
+Pass a function to `selector` in order to create selectors other than class selectors. Function receives the generated *selector name* as input and should return a [css selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) as a string.
 
 ```js
 var css = util({
