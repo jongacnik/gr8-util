@@ -4,7 +4,6 @@ var util = require('./')
 /**
  * Todo
  *
- * - [ ] Test transform?
  */
 
 test('prop {String}, vals {String}', function (t) {

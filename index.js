@@ -8,7 +8,6 @@ var flatten = require('arr-flatten')
  *
  * - [ ] Tests
  * - [ ] Assertions
- * - [ ] Determine if keep transform
  */
 
 module.exports = gr8util
@@ -18,7 +17,7 @@ function gr8util (opts) {
     prefixes: getPrefixes(opts.prop),
     properties: getProperties(opts.prop),
     suffixes: getSuffixes(opts.vals),
-    values: getValues(opts.vals, opts.transform),
+    values: getValues(opts.vals),
     join: opts.join,
     unit: opts.unit,
     tail: opts.tail,
@@ -54,9 +53,8 @@ function getSuffixes (input) {
   return suffixes.map(i => dedecimalOrAbbreviate(i, shouldAbbreviate))
 }
 
-function getValues (input, transform = i => i) {
-  var values = isPlainObj(input) ? objectValues(input) : ensureArray(input)
-  return values.map(i => transform(i))
+function getValues (input) {
+  return isPlainObj(input) ? objectValues(input) : ensureArray(input)
 }
 
 function getRulesets (opts) {
