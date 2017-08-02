@@ -1,4 +1,3 @@
-var objectValues = require('object-values')
 var isPlainObj = require('is-plain-obj')
 var isNumber = require('is-number')
 var flatten = require('arr-flatten')
@@ -38,10 +37,10 @@ function getPrefixes (input) {
 
 function getProperties (input) {
   var properties = isPlainObj(input)
-    ? objectValues(input)
+    ? Object.values(input)
     : ensureArray(input).map(i => {
       return isPlainObj(i)
-        ? objectValues(i).pop()
+        ? Object.values(i).pop()
         : i
     })
   return properties
@@ -54,7 +53,7 @@ function getSuffixes (input) {
 }
 
 function getValues (input) {
-  return isPlainObj(input) ? objectValues(input) : ensureArray(input)
+  return isPlainObj(input) ? Object.values(input) : ensureArray(input)
 }
 
 function getRulesets (opts) {
