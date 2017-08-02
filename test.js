@@ -91,6 +91,28 @@ test('prop {Array}{Obj}, vals {Int}, unit {String}', function (t) {
   t.end()
 })
 
+test('prop {Obj}, vals {Int}, unit {String}', function (t) {
+  var css = util({
+    prop: {
+      x: 'flex-wrap'
+    },
+    vals: [
+      'wrap',
+      'wrap-reverse',
+      { wn: 'nowrap' }
+    ]
+  })
+
+  var hasUtils = hasAll([
+    '.xw{flex-wrap:wrap}',
+    '.xwr{flex-wrap:wrap-reverse}',
+    '.xwn{flex-wrap:nowrap}'
+  ], css)
+
+  t.ok(hasUtils, css)
+  t.end()
+})
+
 test('prop {String}, vals {String}, selector {Function}', function (t) {
   var css = util({
     prop: 'display',

@@ -47,13 +47,26 @@ function getProperties (input) {
 }
 
 function getSuffixes (input) {
-  var suffixes = isPlainObj(input) ? Object.keys(input) : ensureArray(input)
-  var shouldAbbreviate = !isPlainObj(input)
-  return suffixes.map(i => dedecimalOrAbbreviate(i, shouldAbbreviate))
+  if (isPlainObj(input)) {
+    return Object.keys(input).map(i => dedecimalOrAbbreviate(i, false))
+  } else {
+    return ensureArray(input).map(i => {
+      return isPlainObj(i)
+        ? dedecimalOrAbbreviate(Object.keys(i).pop(), false)
+        : dedecimalOrAbbreviate(i, true)
+    })
+  }
 }
 
 function getValues (input) {
-  return isPlainObj(input) ? Object.values(input) : ensureArray(input)
+  var values = isPlainObj(input)
+    ? Object.values(input)
+    : ensureArray(input).map(i => {
+      return isPlainObj(i)
+        ? Object.values(i).pop()
+        : i 
+    })
+  return values
 }
 
 function getRulesets (opts) {
