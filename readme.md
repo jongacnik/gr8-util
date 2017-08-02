@@ -159,29 +159,6 @@ var css = util({
 
 ---
 
-Use a nested array as `prop` within an object to override abbreviation.
-
-```js
-var css = util({
-  prop: { 
-    mx: ['margin-left', 'margin-right']
-  },
-  vals: 1,
-  unit: 'rem'
-})
-```
-
-<details>
-  <summary><strong>view generated css</strong></summary>
-
-  ```css
-  .mx1{margin-left:1rem;margin-right:1rem}
-  ```
-
-</details>
-
----
-
 Use an array which contains both strings and key/val objects as `prop` in order to override only specific abbreviations.
 
 ```js
