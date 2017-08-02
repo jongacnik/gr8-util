@@ -67,14 +67,9 @@ var css = util({
 })
 ```
 
-<details>
-  <summary><strong>view generated css</strong></summary>
-
-  ```css
-  .op0{opacity:0}
-  ```
-
-</details>
+```css
+.op0{opacity:0}
+```
 
 ---
 
@@ -95,19 +90,14 @@ var css = util({
 })
 ```
 
-<details>
-  <summary><strong>view generated css</strong></summary>
-
-  ```css
-  .m0{margin:0}
-  .m0-5{margin:0.5rem}
-  .m1{margin:1rem}
-  .p0{padding:0}
-  .p0-5{padding:0.5rem}
-  .p1{padding:1rem}
-  ```
-
-</details>
+```css
+.m0{margin:0}
+.m0-5{margin:0.5rem}
+.m1{margin:1rem}
+.p0{padding:0}
+.p0-5{padding:0.5rem}
+.p1{padding:1rem}
+```
 
 ---
 
@@ -125,14 +115,9 @@ var css = util({
 })
 ```
 
-<details>
-  <summary><strong>view generated css</strong></summary>
-
-  ```css
-  .bgc-red{background-color:#f00}
-  ```
-
-</details>
+```css
+.bgc-red{background-color:#f00}
+```
 
 ---
 
@@ -148,14 +133,9 @@ var css = util({
 })
 ```
 
-<details>
-  <summary><strong>view generated css</strong></summary>
-
-  ```css
-  .mlmr1{margin-left:1rem;margin-right:1rem}
-  ```
-
-</details>
+```css
+.mlmr1{margin-left:1rem;margin-right:1rem}
+```
 
 ---
 
@@ -174,17 +154,12 @@ var css = util({
 })
 ```
 
-<details>
-  <summary><strong>view generated css</strong></summary>
-
-  ```css
-  .m1{margin:1rem}
-  .mr1{margin-right:1rem}
-  .ml1{margin-left:1rem}
-  .mx1{margin-left:1rem;margin-right:1rem}
-  ```
-
-</details>
+```css
+.m1{margin:1rem}
+.mr1{margin-right:1rem}
+.ml1{margin-left:1rem}
+.mx1{margin-left:1rem;margin-right:1rem}
+```
 
 ---
 
@@ -203,16 +178,11 @@ var css = util({
 })
 ```
 
-<details>
-  <summary><strong>view generated css</strong></summary>
-
-  ```css
-  .xw{flex-wrap:wrap}
-  .xwr{flex-wrap:wrap-reverse}
-  .xwn{flex-wrap:nowrap}
-  ```
-
-</details>
+```css
+.xw{flex-wrap:wrap}
+.xwr{flex-wrap:wrap-reverse}
+.xwn{flex-wrap:nowrap}
+```
 
 ---
 
@@ -226,14 +196,9 @@ var css = util({
 })
 ```
 
-<details>
-  <summary><strong>view generated css</strong></summary>
-
-  ```css
-  [data-util~="db"]{display:block}
-  ```
-
-</details>
+```css
+[data-util~="db"]{display:block}
+```
 
 ---
 
@@ -247,14 +212,9 @@ var css = util({
 })
 ```
 
-<details>
-  <summary><strong>view generated css</strong></summary>
-
-  ```css
-  .db:after{display:block}
-  ```
-
-</details>
+```css
+.db:after{display:block}
+```
 
 ## Why
 
