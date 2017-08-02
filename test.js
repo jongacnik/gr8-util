@@ -91,7 +91,7 @@ test('prop {Array}{Obj}, vals {Int}, unit {String}', function (t) {
   t.end()
 })
 
-test('prop {Obj}, vals {Int}, unit {String}', function (t) {
+test('prop {Obj}, vals {Array}{Obj}, unit {String}', function (t) {
   var css = util({
     prop: {
       x: 'flex-wrap'
