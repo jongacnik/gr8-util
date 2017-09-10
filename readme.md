@@ -1,7 +1,5 @@
 # gr8-util
 
-**⚠️ Work in progress...**
-
 A little function for generating functional css utilities.
 
 ## Usage
@@ -232,16 +230,29 @@ var css = util({
 })
 ```
 
+```css
+.c1{width:8.333333333333332%}
+.c2{width:16.666666666666664%}
+.c3{width:25%}
+.c4{width:33.33333333333333%}
+.c5{width:41.66666666666667%}
+.c6{width:50%}
+.c7{width:58.333333333333336%}
+.c8{width:66.66666666666666%}
+.c9{width:75%}
+.c10{width:83.33333333333334%}
+.c11{width:91.66666666666666%}
+.c12{width:100%}
+```
+
 ## Why
 
 Provides consistency and flexibility when generating functional css utility systems, such as [gr8](https://github.com/jongacnik/gr8).
 
 ## Todo
 
-- [ ] Docs
 - [ ] Defaults
 - [ ] Assertions
-- [ ] Remove `=>` functions
 
 ## See Also
 
