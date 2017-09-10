@@ -2,13 +2,6 @@ var isPlainObj = require('is-plain-obj')
 var isNumber = require('is-number')
 var flatten = require('arr-flatten')
 
-/**
- * Todo
- *
- * - [ ] Tests
- * - [ ] Assertions
- */
-
 module.exports = gr8util
 
 function gr8util (opts) {
