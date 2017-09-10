@@ -234,7 +234,7 @@ var css = util({
 
 ## Why
 
-Provides consistency and flexibility when generating functional css utility systems, such as [gr8]().
+Provides consistency and flexibility when generating functional css utility systems, such as [gr8](https://github.com/jongacnik/gr8).
 
 ## Todo
 
@@ -245,9 +245,7 @@ Provides consistency and flexibility when generating functional css utility syst
 
 ## See Also
 
-- ~~[postcss-gr8-util]()~~
-- ~~[postcss-gr8]()~~
-- [gr8]()
+- [gr8](https://github.com/jongacnik/gr8)
 - ~~[gr8-tachyons]()~~
 
 ## License
