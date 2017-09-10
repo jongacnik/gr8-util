@@ -1,15 +1,15 @@
 {
   "name": "gr8-util",
   "version": "1.0.0",
-  "description": "",
+  "description": "A little function for generating functional css utilities",
   "main": "index.js",
   "scripts": {
     "test": "standard && node test.js",
     "lint": "standard --fix"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["functional", "css", "utilities"],
+  "author": "Jon Gacnik <jon@folderstudio.com> (http://jongacnik.com)",
+  "license": "MIT",
   "dependencies": {
     "arr-flatten": "^1.1.0",
     "is-number": "^3.0.0",
