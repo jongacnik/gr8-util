@@ -18,8 +18,8 @@ function gr8util (opts) {
 }
 
 function getPrefixes (input) {
-  var prefixes = isPlainObj(input) 
-    ? Object.keys(input) 
+  var prefixes = isPlainObj(input)
+    ? Object.keys(input)
     : ensureArray(input).map(i => {
       return isPlainObj(i)
         ? Object.keys(i).pop()
@@ -58,7 +58,7 @@ function getValues (input, transform) {
     : ensureArray(input).map(i => {
       return isPlainObj(i)
         ? Object.values(i).pop()
-        : i 
+        : i
     })
   return values.map(i => transform(i))
 }
@@ -74,7 +74,7 @@ function getRulesets (opts) {
     })
   })
 
-  return flatten(rulesets).join("\n")
+  return flatten(rulesets).join('\n')
 }
 
 function dedecimal (input) {
@@ -86,7 +86,7 @@ function abbreviate (input) {
 }
 
 function dedecimalOrAbbreviate (input, shouldAbbreviate) {
-  return isFinite(String(input)) 
+  return isFinite(String(input))
     ? dedecimal(input)
     : (shouldAbbreviate ? abbreviate(input) : input)
 }
@@ -113,5 +113,5 @@ function classname (prefix, suffix, join) {
 }
 
 function declaration (property, value, unit) {
-  return `${property}:${value}${value && isNumber(value) && unit || ''}`
+  return `${property}:${value}${(value && isNumber(value) && unit) || ''}`
 }

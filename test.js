@@ -77,7 +77,7 @@ test('prop {Object}, vals {Object}, join {String}', function (t) {
 test('prop {Array}{Obj}, vals {Int}, unit {String}', function (t) {
   var css = util({
     prop: [
-      { 
+      {
         mx: ['margin-left', 'margin-right']
       }
     ],

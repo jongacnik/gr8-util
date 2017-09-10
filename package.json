@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "standard && node test.js",
+    "lint": "standard --fix"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "is-plain-obj": "^1.1.0"
   },
   "devDependencies": {
+    "standard": "^10.0.3",
     "tape": "^4.7.0"
   }
 }
