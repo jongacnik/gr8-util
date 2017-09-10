@@ -15,7 +15,7 @@ A little function for generating functional css utilities.
 
 ## Usage
 
-Given some options, `gr8-util` returns a string of css utilites. It does its best to generate concise and logical css selectors.
+Given some options, `gr8-util` returns a string of css utilities. It does its best to generate concise and logical css selectors.
 
 ```js
 var util = require('gr8-util')
