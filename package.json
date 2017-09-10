@@ -4,8 +4,7 @@
   "description": "A little function for generating functional css utilities",
   "main": "index.js",
   "scripts": {
-    "test": "standard && node test.js",
-    "lint": "standard --fix"
+    "test": "standard --fix && node test.js"
   },
   "keywords": ["functional", "css", "utilities"],
   "author": "Jon Gacnik <jon@folderstudio.com> (http://jongacnik.com)",
