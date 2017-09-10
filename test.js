@@ -139,6 +139,22 @@ test('prop {String}, vals {String}, tail {String}', function (t) {
   t.end()
 })
 
+test('transform {Function}', function (t) {
+  var css = util({
+    prop: {
+      c: 'width'
+    },
+    vals: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    unit: '%',
+    transform: i => (i / 12) * 100
+  })
+
+  var hasUtil = has('.c6{width:50%}', css)
+
+  t.ok(hasUtil, css)
+  t.end()
+})
+
 // true if every element is truthy
 function allTruthy (results) {
   return results.every(function (result) {

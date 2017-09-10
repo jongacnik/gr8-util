@@ -51,6 +51,7 @@ Generate a string of css utility rules. `opts` accepts the following values:
 - `opts.tail` **[String]** string to append after selector
 - `opts.join` **[String]** string to join abbreviation and value in selector
 - `opts.selector` **[Function]** css selector template function
+- `opts.transform` **[Function]** value transform function
 
 ## Examples
 
@@ -214,6 +215,21 @@ var css = util({
 
 ```css
 .db:after{display:block}
+```
+
+---
+
+Use `transform` in order to transform values as they are placed into declarations. Useful for things like columns:
+
+```js
+var css = util({
+  prop: {
+    c: 'width'
+  },
+  vals: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+  unit: '%',
+  transform: i => (i / 12) * 100
+})
 ```
 
 ## Why

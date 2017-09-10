@@ -16,7 +16,7 @@ function gr8util (opts) {
     prefixes: getPrefixes(opts.prop),
     properties: getProperties(opts.prop),
     suffixes: getSuffixes(opts.vals),
-    values: getValues(opts.vals),
+    values: getValues(opts.vals, opts.transform),
     join: opts.join,
     unit: opts.unit,
     tail: opts.tail,
@@ -58,7 +58,8 @@ function getSuffixes (input) {
   }
 }
 
-function getValues (input) {
+function getValues (input, transform) {
+  transform = transform || (i => i)
   var values = isPlainObj(input)
     ? Object.values(input)
     : ensureArray(input).map(i => {
@@ -66,7 +67,7 @@ function getValues (input) {
         ? Object.values(i).pop()
         : i 
     })
-  return values
+  return values.map(i => transform(i))
 }
 
 function getRulesets (opts) {
