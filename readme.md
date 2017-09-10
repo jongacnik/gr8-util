@@ -268,7 +268,6 @@ Provides consistency and flexibility when generating functional css utility syst
 ## See Also
 
 - [gr8](https://github.com/jongacnik/gr8)
-- ~~[gr8-tachyons]()~~
 
 ## License
 
