@@ -1,4 +1,15 @@
-# gr8-util
+<h1 align="center">gr8-util</h1>
+
+<div align="center">
+  <a href="https://www.npmjs.com/package/gr8-util">
+    <img src="https://img.shields.io/npm/v/gr8-util.svg?style=flat-square" alt="NPM version" />
+  </a>
+  <a href="https://github.com/feross/standard">
+    <img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square" alt="NPM version" />
+  </a>
+</div>
+
+<br />
 
 A little function for generating functional css utilities.
 
