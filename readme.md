@@ -250,4 +250,4 @@ Provides consistency and flexibility when generating functional css utility syst
 
 ## License
 
-[MIT]()
+[MIT](https://github.com/jongacnik/gr8-util/blob/master/LICENSE)
