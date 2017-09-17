@@ -6,13 +6,18 @@
   "scripts": {
     "test": "standard --fix && node test.js"
   },
-  "keywords": ["functional", "css", "utilities"],
+  "keywords": [
+    "functional",
+    "css",
+    "utilities"
+  ],
   "author": "Jon Gacnik <jon@folderstudio.com> (http://jongacnik.com)",
   "license": "MIT",
   "dependencies": {
     "arr-flatten": "^1.1.0",
     "is-number": "^3.0.0",
-    "is-plain-obj": "^1.1.0"
+    "is-plain-obj": "^1.1.0",
+    "object-values": "^1.0.0"
   },
   "devDependencies": {
     "standard": "^10.0.3",

@@ -1,6 +1,7 @@
 var isPlainObj = require('is-plain-obj')
 var isNumber = require('is-number')
 var flatten = require('arr-flatten')
+var ov = require('object-values')
 
 module.exports = gr8util
 
@@ -30,10 +31,10 @@ function getPrefixes (input) {
 
 function getProperties (input) {
   var properties = isPlainObj(input)
-    ? Object.values(input)
+    ? ov(input)
     : ensureArray(input).map(i => {
       return isPlainObj(i)
-        ? Object.values(i).pop()
+        ? ov(i).pop()
         : i
     })
   return properties
@@ -54,10 +55,10 @@ function getSuffixes (input) {
 function getValues (input, transform) {
   transform = transform || (i => i)
   var values = isPlainObj(input)
-    ? Object.values(input)
+    ? ov(input)
     : ensureArray(input).map(i => {
       return isPlainObj(i)
-        ? Object.values(i).pop()
+        ? ov(i).pop()
         : i
     })
   return values.map(i => transform(i))
