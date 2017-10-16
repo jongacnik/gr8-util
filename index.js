@@ -6,16 +6,24 @@ var ov = require('object-values')
 module.exports = gr8util
 
 function gr8util (opts) {
-  return getRulesets({
-    prefixes: getPrefixes(opts.prop),
-    properties: getProperties(opts.prop),
-    suffixes: getSuffixes(opts.vals),
-    values: getValues(opts.vals, opts.transform),
-    join: opts.join,
-    unit: opts.unit,
-    tail: opts.tail,
-    selector: opts.selector || (s => `.${s}`)
-  })
+  if (opts.raw) {
+    return getRawRulesets({
+      entries: opts.raw,
+      tail: opts.tail,
+      selector: opts.selector || (s => `.${s}`)
+    })
+  } else {
+    return getRulesets({
+      prefixes: getPrefixes(opts.prop),
+      properties: getProperties(opts.prop),
+      suffixes: getSuffixes(opts.vals),
+      values: getValues(opts.vals, opts.transform),
+      join: opts.join,
+      unit: opts.unit,
+      tail: opts.tail,
+      selector: opts.selector || (s => `.${s}`)
+    })
+  }
 }
 
 function getPrefixes (input) {
@@ -73,6 +81,18 @@ function getRulesets (opts) {
         opts.tail
       )
     })
+  })
+
+  return flatten(rulesets).join('\n')
+}
+
+function getRawRulesets (opts) {
+  var rulesets = Object.keys(opts.entries).map(function (s) {
+    return ruleset(
+      opts.selector(s),
+      opts.entries[s],
+      opts.tail
+    )
   })
 
   return flatten(rulesets).join('\n')
