@@ -1,6 +1,6 @@
 {
   "name": "gr8-util",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A little function for generating functional css utilities",
   "main": "index.js",
   "scripts": {
