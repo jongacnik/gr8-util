@@ -155,6 +155,23 @@ test('transform {Function}', function (t) {
   t.end()
 })
 
+test('raw', function (t) {
+  var css = util({
+    raw: {
+      'trans-center-x': 'left:50%;transform:translateX(-50%)',
+      'trans-center-y': 'top:50%;transform:translateY(-50%)'
+    }
+  })
+
+  var hasUtil = hasAll([
+    '.trans-center-x{left:50%;transform:translateX(-50%)}',
+    '.trans-center-y{top:50%;transform:translateY(-50%)}'
+  ], css)
+
+  t.ok(hasUtil, css)
+  t.end()
+})
+
 // true if every element is truthy
 function allTruthy (results) {
   return results.every(function (result) {
