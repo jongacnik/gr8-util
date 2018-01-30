@@ -172,6 +172,33 @@ test('raw', function (t) {
   t.end()
 })
 
+test('pseudo', function (t) {
+  var css = util({
+    prop: 'text-transform',
+    vals: [
+      'uppercase',
+      'lowercase'
+    ],
+    pseudo: [
+      'hover',
+      'active',
+      { foc: 'focus' }
+    ]
+  })
+
+  var hasUtil = hasAll([
+    '.ttu-h:hover{text-transform:uppercase}',
+    '.ttu-a:active{text-transform:uppercase}',
+    '.ttu-foc:focus{text-transform:uppercase}',
+    '.ttl-h:hover{text-transform:lowercase}',
+    '.ttl-a:active{text-transform:lowercase}',
+    '.ttl-foc:focus{text-transform:lowercase}'
+  ], css)
+
+  t.ok(hasUtil, css)
+  t.end()
+})
+
 // true if every element is truthy
 function allTruthy (results) {
   return results.every(function (result) {
