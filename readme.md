@@ -62,6 +62,7 @@ Generate a string of css utility rules. `opts` accepts the following values:
 - `opts.join` **[String]** string to join abbreviation and value in selector
 - `opts.selector` **[Function]** css selector template function
 - `opts.transform` **[Function]** value transform function
+- `opts.parent` **[String]** global parent selector
 
 ## Examples
 
@@ -310,6 +311,29 @@ var css = util({
 .c10{width:83.33333333333334%}
 .c11{width:91.66666666666666%}
 .c12{width:100%}
+```
+
+---
+
+Use `parent` in order to namespace your rules. Useful for conditional utilities:
+
+```js
+var css = util({
+  prop: { fc: 'color' },
+  vals: [
+    'red',
+    'blue',
+    'green'
+  ],
+  modifiers: ':hover',
+  parent: '.no-touch'
+})
+```
+
+```css
+.no-touch .fcr-h:hover{color:red}
+.no-touch .fcb-h:hover{color:blue}
+.no-touch .fcg-h:hover{color:green}
 ```
 
 ## Why

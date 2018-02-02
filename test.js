@@ -194,6 +194,28 @@ test('modifiers', function (t) {
   t.end()
 })
 
+test('parent', function (t) {
+  var css = util({
+    prop: { fc: 'color' },
+    vals: [
+      'red',
+      'blue',
+      'green'
+    ],
+    modifiers: ':hover',
+    parent: '.no-touch'
+  })
+
+  var hasUtil = hasAll([
+    '.no-touch .fcr-h:hover{color:red}',
+    '.no-touch .fcb-h:hover{color:blue}',
+    '.no-touch .fcg-h:hover{color:green}'
+  ], css)
+
+  t.ok(hasUtil, css)
+  t.end()
+})
+
 // true if every element is truthy
 function allTruthy (results) {
   return results.every(function (result) {
