@@ -36,7 +36,9 @@ function getValues (input, transformRaw, transform) {
   return processOption(ov, input, transformRaw, transform)
 }
 
-function processOption (method, input, transformRaw = i => i, transform = j => j) {
+function processOption (method, input, transformRaw, transform) {
+  transformRaw = transformRaw || (i => i)
+  transform = transform || (j => j)
   var values = isPlainObj(input)
     ? method(input)
     : ensureArray(input).map(i => {
