@@ -9,6 +9,7 @@ function gr8util (opts) {
   if (opts.raw) {
     return getRawRulesets({
       entries: opts.raw,
+      parent: opts.parent,
       tail: opts.tail,
       selector: opts.selector || (s => `.${s}`)
     })
@@ -20,6 +21,7 @@ function gr8util (opts) {
       values: getValues(opts.vals, undefined, opts.transform),
       modifierPrefixes: getKeys(opts.modifiers, i => safeAbbreviate(i), j => prependHyphen(j)),
       modifierSuffixes: getValues(opts.modifiers),
+      parent: opts.parent,
       join: opts.join,
       tail: opts.tail,
       unit: opts.unit,
@@ -55,7 +57,13 @@ function getRulesets (opts) {
       return opts.modifierPrefixes.map(function (modifier, k) {
         var selector = opts.selector(classname(prefix, opts.suffixes[j], opts.join, modifier))
         var declaration = declarations(opts.properties[i], value, opts.unit)
-        return ruleset(selector, declaration, opts.modifierSuffixes[k], opts.tail)
+        return ruleset(
+          selector,
+          declaration,
+          opts.modifierSuffixes[k],
+          opts.tail,
+          opts.parent
+        )
       })
     })
   })
@@ -69,7 +77,8 @@ function getRawRulesets (opts) {
       opts.selector(s),
       opts.entries[s],
       null,
-      opts.tail
+      opts.tail,
+      opts.parent
     )
   })
 
@@ -106,8 +115,8 @@ function declarations (properties, value, unit) {
     .map(property => declaration(property, value, unit)).join(';')
 }
 
-function ruleset (selector, declaration, modifier, tail) {
-  return `${selector}${modifier || ''}${tail || ''}{${declaration}}`
+function ruleset (selector, declaration, modifier, tail, parent) {
+  return `${parent ? parent + ' ' : ''}${selector}${modifier || ''}${tail || ''}{${declaration}}`
 }
 
 function classname (prefix, suffix, join, modifier) {
