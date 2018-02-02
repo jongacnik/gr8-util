@@ -56,8 +56,8 @@ Generate a string of css utility rules. `opts` accepts the following values:
 
 - `opts.prop` **[String | Array | Object]** css property(ies) ***required**
 - `opts.vals` **[Number | String | Array | Object]** css values ***required**
-- `opts.unit` **[String]** unit to append to css values (only appended if values are numeric)
 - `opts.modifiers` **[String | Array | Object]** selector modifier(s)
+- `opts.unit` **[String]** unit to append to css values (only appended if values are numeric)
 - `opts.tail` **[String]** string to append after selector
 - `opts.join` **[String]** string to join abbreviation and value in selector
 - `opts.selector` **[Function]** css selector template function
