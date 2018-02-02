@@ -1,11 +1,6 @@
 var test = require('tape')
 var util = require('./')
 
-/**
- * Todo
- *
- */
-
 test('prop {String}, vals {String}', function (t) {
   var css = util({
     prop: 'display',
@@ -166,6 +161,33 @@ test('raw', function (t) {
   var hasUtil = hasAll([
     '.trans-center-x{left:50%;transform:translateX(-50%)}',
     '.trans-center-y{top:50%;transform:translateY(-50%)}'
+  ], css)
+
+  t.ok(hasUtil, css)
+  t.end()
+})
+
+test('modifiers', function (t) {
+  var css = util({
+    prop: 'text-transform',
+    vals: [
+      'uppercase',
+      'lowercase'
+    ],
+    modifiers: [
+      ':hover',
+      ':active',
+      { foc: ':focus' }
+    ]
+  })
+
+  var hasUtil = hasAll([
+    '.ttu-h:hover{text-transform:uppercase}',
+    '.ttu-a:active{text-transform:uppercase}',
+    '.ttu-foc:focus{text-transform:uppercase}',
+    '.ttl-h:hover{text-transform:lowercase}',
+    '.ttl-a:active{text-transform:lowercase}',
+    '.ttl-foc:focus{text-transform:lowercase}'
   ], css)
 
   t.ok(hasUtil, css)

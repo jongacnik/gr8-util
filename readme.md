@@ -56,6 +56,7 @@ Generate a string of css utility rules. `opts` accepts the following values:
 
 - `opts.prop` **[String | Array | Object]** css property(ies) ***required**
 - `opts.vals` **[Number | String | Array | Object]** css values ***required**
+- `opts.modifiers` **[String | Array | Object]** selector modifier(s)
 - `opts.unit` **[String]** unit to append to css values (only appended if values are numeric)
 - `opts.tail` **[String]** string to append after selector
 - `opts.join` **[String]** string to join abbreviation and value in selector
@@ -212,18 +213,73 @@ var css = util({
 
 ---
 
-Use `tail` in order to append an arbitrary string to a selector. Exceptionally useful for [pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) or [descendant selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_selectors).
+Use `modifiers` in order to generate rules for things like [pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes), [pseudo-elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements), and [descendant selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_selectors). Exceptionally useful for hover states.
 
 ```js
 var css = util({
-  prop: 'display',
-  vals: 'block',
+  prop: 'text-transform',
+  vals: [
+    'uppercase',
+    'lowercase'
+  ],
+  modifiers: [
+    ':hover',
+    ':active',
+    { foc: ':focus' }
+  ]
+})
+```
+
+```css
+.ttu-h:hover{text-transform:uppercase}
+.ttu-a:active{text-transform:uppercase}
+.ttu-foc:focus{text-transform:uppercase}
+.ttl-h:hover{text-transform:lowercase}
+.ttl-a:active{text-transform:lowercase}
+.ttl-foc:focus{text-transform:lowercase}
+```
+
+Passing `false` to modifiers generates rules without a modifier. This is useful for concisely creating sets of rules:
+
+```js
+var css = util({
+  prop: { fc: 'color' },
+  vals: [
+    'red',
+    'blue',
+    'green'
+  ],
+  modifiers: [
+    false,
+    ':hover'
+  ]
+})
+```
+
+```css
+.fcr{color:red}
+.fcr-h:hover{color:red}
+.fcb{color:blue}
+.fcb-h:hover{color:blue}
+.fcg{color:green}
+.fcg-h:hover{color:green}
+```
+
+---
+
+Use `tail` in order to append an arbitrary string to a selector. Useful when adding things like pseudo-classes which do not need a modifier in the classname.
+
+```js
+var css = util({
+  raw: {
+    cf: 'content:"";display:block;clear:both'
+  },
   tail: ':after'
 })
 ```
 
 ```css
-.db:after{display:block}
+.cf:after{content:"";display:block;clear:both}
 ```
 
 ---
