@@ -1,11 +1,6 @@
 var test = require('tape')
 var util = require('./')
 
-/**
- * Todo
- *
- */
-
 test('prop {String}, vals {String}', function (t) {
   var css = util({
     prop: 'display',
@@ -172,17 +167,17 @@ test('raw', function (t) {
   t.end()
 })
 
-test('pseudo', function (t) {
+test('modifiers', function (t) {
   var css = util({
     prop: 'text-transform',
     vals: [
       'uppercase',
       'lowercase'
     ],
-    pseudo: [
-      'hover',
-      'active',
-      { foc: 'focus' }
+    modifiers: [
+      ':hover',
+      ':active',
+      { foc: ':focus' }
     ]
   })
 
